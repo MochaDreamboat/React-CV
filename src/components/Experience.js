@@ -1,30 +1,17 @@
 import React from "react";
+import Position from "./Position.js";
 
-const Experience = (props) => {
-    const { employers } = props;
-    
+const Experience = ({pastJobs}) => {
     return (
         <ul>
-            {employers.map((employer) => {
+            {pastJobs.map((employer) => {
                 return ( 
                 <li>
                     <h3>{employer.title}</h3>
                     <h3>{employer.years}</h3>
                     {employer.positions.map((position) => {
-                        return (
-                        <div>
-                            <p>{position.role}</p>
-                            <p>{position.years}</p>
-                            <ul>
-                            {position.responsibilities.map((responsibility) => {
-                                return (
-                                        <li>{responsibility}</li>
-                                )
-                            })}
-                            </ul>
-                        </div>
-            )})}
-
+                        return <Position position={position} />
+                    })}
                 </ li>
                 )})}
         </ul>
@@ -34,17 +21,9 @@ const Experience = (props) => {
 
 export default Experience;
 
-// Employer
-// Position 1
-// Achievements 1
-// Position 2
-//Achievements 2
 
-/*
-    employerObj = {
-        title: Legends;
-        years: '2000-2001';
-        positions: [{role: Bartender, responsibilities: ['Duties 1', 'Duties 2']}, ...]
-    }
-
-*/
+    // employerObj = {
+    //     title: Legends;
+    //     years: '2000-2001';
+    //     positions: [{role: Bartender, responsibilities: ['Duties 1', 'Duties 2']}, ...]
+    // }

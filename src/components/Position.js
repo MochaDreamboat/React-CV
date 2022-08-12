@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Position (props) {
+function Position ({position}) {
     return (
         <div class="position">
-            <p>{props.position.role}</p>
-            <p>{props.position.years}</p>
+            <p>{position.role}</p>
+            <p>{position.years}</p>
             <ul>
-            {props.position.duties.map((duty) => {
+            {position.duties.map((duty) => {
                 return (
                     <li>{duty}</li>
                 )
