@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Header from "./components/Header.js";
+import Header, { Form } from "./components/Header.js";
 import Experience from "./components/Experience.js";
 import ContactInfo from "./components/ContactInfo.js";
 const pastJobs = 
@@ -30,13 +30,18 @@ class App extends Component {
 
      pastJobs: []
     }
+
+  }
+
+  changePersonalInfo = (changes) => {
+    this.setState({personalInfo: {name: changes.changedName, title: changes.changedTitle, summary: changes.changedSummary}})
   }
 
   render() {
     const {name, title, summary, email, phone, location, website } = this.state.personalInfo;
     return (
     <div>
-      <Header name={name} title={title} summary={summary}/>
+      <Header name={name} title={title} summary={summary} changeInfo={this.changePersonalInfo} />
       <ContactInfo email={email} phone={phone} location={location} website={website} /> 
       <Experience pastJobs={pastJobs} />
     </div>
