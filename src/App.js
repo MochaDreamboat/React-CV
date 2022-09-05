@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Header, { Form } from "./components/Header.js";
+import Form from "./components/Form.js";
+import Header from "./components/Header.js";
 import Experience from "./components/Experience.js";
 import ContactInfo from "./components/ContactInfo.js";
 const pastJobs = 
@@ -27,21 +28,28 @@ class App extends Component {
       skills: [],
       pic: undefined
      },
-
+     formVisible: false,
      pastJobs: []
     }
 
+    this.toggleForm = this.toggleForm.bind(this);
   }
 
   changePersonalInfo = (changes) => {
     this.setState({personalInfo: {name: changes.changedName, title: changes.changedTitle, summary: changes.changedSummary}})
   }
 
+  toggleForm () {
+    const visible = (this.state.formVisible ? false : true);
+    this.setState({formVisible: visible})
+}
+
   render() {
     const {name, title, summary, email, phone, location, website } = this.state.personalInfo;
     return (
     <div>
-      <Header name={name} title={title} summary={summary} changeInfo={this.changePersonalInfo} />
+      <Header name={name} title={title} summary={summary} showForm={this.toggleForm} />
+      {this.state.formVisible && <Form />}
       <ContactInfo email={email} phone={phone} location={location} website={website} /> 
       <Experience pastJobs={pastJobs} />
     </div>
