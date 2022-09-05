@@ -63,14 +63,14 @@ class App extends Component {
   }
 
   submitChanges = (e) => {
+    const edits = this.state.changes.personalInfo;
     e.preventDefault();
     this.setState({
       personalInfo: {
         ...this.state.personalInfo,
-        name: this.state.changes.personalInfo.name,
-        title: this.state.changes.personalInfo.title,
-        summary: this.state.changes.personalInfo.summary
+        ...edits
       },
+      
       changes: {
         name: '',
         title: '',
