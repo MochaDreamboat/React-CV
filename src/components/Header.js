@@ -9,15 +9,12 @@ class Header extends Component {
         super(props);
 
         this.state = {
-            formVisible: false,
             changes: {
                 changedName: '',
                 changedTitle: '',
                 changedSummary: ''
             }
         }
-
-        this.toggle = this.toggle.bind(this);
     }
 
     toggle () {
