@@ -4,15 +4,6 @@ import Header from "./components/Header.js";
 import Experience from "./components/Experience.js";
 import ContactInfo from "./components/ContactInfo.js";
 
-const pastJobs = 
-[
-  {
-    title: 'Legends',
-    years: '2017-2021',
-    positions: [{role: 'Bartender', years: '2017-2020', duties: ['Served drinks to loyal customers', 'Ensured safety of employees']}]
-  },
-]
-
 class App extends Component {
   constructor() {
     super();
@@ -32,12 +23,12 @@ class App extends Component {
 
       employers: [
            {
-          employer: 'Legends',  
+          name: 'Legends',  
           years: '2017 - 2020',
           positions: [{role: 'Bartender', years: '2017-2020', duties: ['Served drinks to loyal customers', 'Ensured safety of employees']}]
         },
         {
-          employer: 'University of Illinois Foundation',
+          name: 'University of Illinois Foundation',
           years: '2016 - 2019',
           positions: [{role: 'Student Development Representative', years: '2017-2020', duties: ['Corresponded with alumni and associates for donations.', 'Conducted alumni outreach for school-related events']}]
         },

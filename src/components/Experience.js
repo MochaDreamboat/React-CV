@@ -7,7 +7,7 @@ const Experience = ({pastJobs}) => {
             {pastJobs.map((employer) => {
                 return ( 
                 <li>
-                    <h3>{employer.title}</h3>
+                    <h3>{employer.name}</h3>
                     <h3>{employer.years}</h3>
                     {employer.positions.map((position) => {
                         return <Position position={position} />
