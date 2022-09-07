@@ -30,6 +30,19 @@ class App extends Component {
       pic: undefined
      },
 
+      employers: [
+           {
+          employer: 'Legends',  
+          years: '2017 - 2020',
+          positions: [{role: 'Bartender', years: '2017-2020', duties: ['Served drinks to loyal customers', 'Ensured safety of employees']}]
+        },
+        {
+          employer: 'University of Illinois Foundation',
+          years: '2016 - 2019',
+          positions: [{role: 'Student Development Representative', years: '2017-2020', duties: ['Corresponded with alumni and associates for donations.', 'Conducted alumni outreach for school-related events']}]
+        },
+      ],
+
      changes: {
       personalInfo: {
         name: '',
@@ -37,6 +50,8 @@ class App extends Component {
         summary: ''
       }
      },
+
+     
 
      formVisible: false,
      pastJobs: []
@@ -83,12 +98,13 @@ class App extends Component {
 
   render() {
     const {name, title, summary, email, phone, location, website } = this.state.personalInfo;
+    const employers = this.state.employers;
     return (
     <div>
       <Header name={name} title={title} summary={summary} showForm={this.toggleForm} />
       {this.state.formVisible && <Form edit={this.handleChange} default={this.state.personalInfo} submit={this.submitChanges}/>}
       <ContactInfo email={email} phone={phone} location={location} website={website} /> 
-      <Experience pastJobs={pastJobs} />
+      <Experience pastJobs={employers } />
     </div>
     )
   }
