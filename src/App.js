@@ -9,7 +9,7 @@ class App extends Component {
     super();
 
     this.state = {
-     personalInfo: {
+     header: {
       name: 'John Smith',
       title: 'Web Developer',
       summary: 'A fledgling developer looking to make moooves.',
@@ -35,10 +35,16 @@ class App extends Component {
       ],
 
      changes: {
-      personalInfo: {
+      header: {
         name: '',
         title: '',
         summary: ''
+      },
+      contactInfo: {
+        email: '',
+        phone: '',
+        location: '',
+        website: ''
       }
      },
 
@@ -56,12 +62,29 @@ class App extends Component {
     this.setState({formVisible: visible})
   }
 
+  // Handles change for personal info.
+  // Generalize function by using class to target specific key in changes???
   handleChange = (e) => {
+    // let changesCategory = e.target.class;
+    let changeCategory = e.target.className;
     let changedValue = e.target.id;
     this.setState({
       changes: {
-        personalInfo: {
-          ...this.state.changes.personalInfo,
+        [changeCategory]: {
+          ...this.state.changes.header,
+          [changedValue]: e.target.value
+        }
+      }
+    })
+  }
+
+  //Handles change for contact info.
+  handleContactChange = (e) => {
+    let changedValue = e.target.id;
+    this.setState({
+      changes: {
+        contactInfo: {
+          ...this.state.changes.contactInfo,
           [changedValue]: e.target.value
         }
       }
@@ -69,11 +92,11 @@ class App extends Component {
   }
 
   submitChanges = (e) => {
-    const edits = this.state.changes.personalInfo;
+    const edits = this.state.changes.header;
     e.preventDefault();
     this.setState({
-      personalInfo: {
-        ...this.state.personalInfo,
+      header: {
+        ...this.state.header,
         ...edits
       },
       
@@ -88,12 +111,12 @@ class App extends Component {
 
 
   render() {
-    const {name, title, summary, email, phone, location, website } = this.state.personalInfo;
+    const {name, title, summary, email, phone, location, website } = this.state.header;
     const employers = this.state.employers;
     return (
     <div>
       <Header name={name} title={title} summary={summary} showForm={this.toggleForm} />
-      {this.state.formVisible && <Form edit={this.handleChange} default={this.state.personalInfo} submit={this.submitChanges}/>}
+      {this.state.formVisible && <Form edit={this.handleChange} default={this.state.header} submit={this.submitChanges}/>}
       <ContactInfo email={email} phone={phone} location={location} website={website} /> 
       <Experience pastJobs={employers } />
     </div>
