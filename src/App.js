@@ -78,19 +78,6 @@ class App extends Component {
     })
   }
 
-  //Handles change for contact info.
-  handleContactChange = (e) => {
-    let changedValue = e.target.id;
-    this.setState({
-      changes: {
-        contactInfo: {
-          ...this.state.changes.contactInfo,
-          [changedValue]: e.target.value
-        }
-      }
-    })
-  }
-
   submitChanges = (e) => {
     const edits = this.state.changes.header;
     e.preventDefault();
