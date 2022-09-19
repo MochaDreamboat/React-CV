@@ -6,15 +6,18 @@ class ContactInfo extends Component {
     }
 
     render() {
-        const { email, phone, location, website } = this.props;
+        const { email, phone, location, website, showForm } = this.props;
 
         return (
-            <ul>
-                <li>{email}</li>
-                <li>{phone}</li>
-                <li>{location}</li>
-                <li>{website}</li>
-            </ul>
+            <div>
+                <ul>
+                    <li>{email}</li>
+                    <li>{phone}</li>
+                    <li>{location}</li>
+                    <li>{website}</li>
+                </ul>
+                <button id="contactInfo" onClick={showForm}>Edit</button> 
+            </div>
         )
     }
 }
