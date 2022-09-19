@@ -1,7 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
 import Position from "./Position.js";
 
-const Experience = ({pastJobs}) => {
+class Experience extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const { pastJobs } = this.props;
+        
     return (
         <ul>
             {pastJobs.map((employer) => {
@@ -16,7 +23,7 @@ const Experience = ({pastJobs}) => {
                 )})}
         </ul>
     )
-    
+    }
 }
 
 export default Experience;
