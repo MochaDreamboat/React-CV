@@ -50,7 +50,12 @@ class App extends Component {
 
      
 
-     formVisible: false,
+     formVisible: {
+      header: false,
+      contactInfo: false,
+      experience: false
+     },
+
      pastJobs: []
     }
 
@@ -59,9 +64,13 @@ class App extends Component {
     this.submitChanges = this.submitChanges.bind(this);
   }
 
-  toggleForm () {
-    const visible = (this.state.formVisible ? false : true);
-    this.setState({formVisible: visible})
+  toggleForm = (e) => {
+    const changeToggle = (this.state.formVisible[e.target.id] ? false : true)
+    this.setState({
+      formVisible: {
+        [e.target.id]: changeToggle
+      }
+    })
   }
 
   handleChange = (e) => {
@@ -75,7 +84,6 @@ class App extends Component {
         }
       }
     })
-    console.log(this.state.changes.header)
   }
 
   submitChanges = (e) => {
@@ -106,8 +114,8 @@ class App extends Component {
     return (
     <div>
       <Header name={name} title={title} summary={summary} showForm={this.toggleForm} />
-      {this.state.formVisible && <Form willChange={"header"} section={"header"} fields={['name', 'title', 'summary']} edit={this.handleChange} submit={this.submitChanges}/>}
-      <ContactInfo email={email} phone={phone} location={location} website={website} /> 
+      {this.state.formVisible.header && <Form willChange={"header"} section={"header"} fields={['name', 'title', 'summary']} edit={this.handleChange} submit={this.submitChanges}/>}
+      <ContactInfo email={email} phone={phone} location={location} website={website} />
       <Experience pastJobs={employers } />
     </div>
     )

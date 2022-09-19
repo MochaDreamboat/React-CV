@@ -18,7 +18,7 @@ class Header extends Component {
                     <h1>{name}</h1>
                     <h2>{title}</h2>
                     <p>{summary}</p>
-                    <button onClick={showForm}>Edit</button>
+                    <button id="header" onClick={showForm}>Edit</button>
                 </section>
             </div>
  );
