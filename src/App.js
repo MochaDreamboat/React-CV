@@ -13,12 +13,15 @@ class App extends Component {
       name: 'John Smith',
       title: 'Web Developer',
       summary: 'A fledgling developer looking to make moooves.',
+      skills: [],
+      pic: undefined
+     },
+
+     contactInfo: {
       email: 'johnsmith@gmail.com',
       phone: '111-111-1111',
       location: 'Chicago, IL',
       website: 'mywebsite.com',
-      skills: [],
-      pic: undefined
      },
 
       employers: [
@@ -84,6 +87,7 @@ class App extends Component {
         }
       }
     })
+    console.log(this.state.changes);
   }
 
   submitChanges = (e) => {
@@ -109,14 +113,16 @@ class App extends Component {
 
 
   render() {
-    const {name, title, summary, email, phone, location, website } = this.state.header;
+    const {name, title, summary } = this.state.header;
+    const { email, phone, location, website } = this.state.contactInfo;
     const employers = this.state.employers;
     return (
     <div>
       <Header name={name} title={title} summary={summary} showForm={this.toggleForm} />
       {this.state.formVisible.header && <Form willChange={"header"} section={"header"} fields={['name', 'title', 'summary']} edit={this.handleChange} submit={this.submitChanges}/>}
-      <ContactInfo email={email} phone={phone} location={location} website={website} />
-      <Experience pastJobs={employers } />
+      <ContactInfo email={email} phone={phone} location={location} website={website} showForm={this.toggleForm} />
+      {this.state.formVisible.contactInfo && <Form willChange={"contactInfo"} section={"contactInfo"} fields={['email', 'phone', 'location', 'website']} edit={this.handleChange} submit={this.submitChanges}/>}
+      <Experience pastJobs={ employers } />
     </div>
     )
   }
