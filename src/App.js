@@ -55,6 +55,8 @@ class App extends Component {
     }
 
     this.toggleForm = this.toggleForm.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.submitChanges = this.submitChanges.bind(this);
   }
 
   toggleForm () {
@@ -62,39 +64,40 @@ class App extends Component {
     this.setState({formVisible: visible})
   }
 
-  // Handles change for personal info.
-  // Generalize function by using class to target specific key in changes???
   handleChange = (e) => {
-    // let changesCategory = e.target.class;
     let changeCategory = e.target.className;
     let changedValue = e.target.id;
     this.setState({
       changes: {
         [changeCategory]: {
-          ...this.state.changes.header,
+          ...this.state.changes[changeCategory],
           [changedValue]: e.target.value
         }
       }
     })
+    console.log(this.state.changes.header)
   }
 
   submitChanges = (e) => {
-    const edits = this.state.changes.header;
     e.preventDefault();
+    const changeCategory = e.target.id;
+    const edits = this.state.changes[changeCategory];
     this.setState({
-      header: {
-        ...this.state.header,
+      [changeCategory]: {
+        ...this.state[changeCategory],
         ...edits
-      },
-      
-      changes: {
-        name: '',
-        title: '',
-        summary: ''
       },
       formVisible: false
     })
-  }
+    for (let field in edits) {
+      this.setState({
+        edits: {
+          ...edits,
+          [field]: ''
+        }
+      })
+    }
+    }
 
 
   render() {
@@ -103,7 +106,7 @@ class App extends Component {
     return (
     <div>
       <Header name={name} title={title} summary={summary} showForm={this.toggleForm} />
-      {this.state.formVisible && <Form edit={this.handleChange} default={this.state.header} submit={this.submitChanges}/>}
+      {this.state.formVisible && <Form willChange={"header"} section={"header"} fields={['name', 'title', 'summary']} edit={this.handleChange} submit={this.submitChanges}/>}
       <ContactInfo email={email} phone={phone} location={location} website={website} /> 
       <Experience pastJobs={employers } />
     </div>

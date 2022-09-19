@@ -7,16 +7,17 @@ class Form extends Component {
     }
 
     render () {
-        const { name, title, summary } = this.props.default;
+        const {willChange, fields, edit, section, submit } = this.props;
         return (
             <form id="edit-header">
-                <label for="name">Change Name</label>
-                <input onChange={this.props.edit} class="header" id="name" placeholder={name} />
-                <label for="title">Change Title</label>
-                <input onChange={this.props.edit} class="header" id="title" placeholder={title}/>
-                <label for="summary">Change Summary</label>
-                <input onChange={this.props.edit} class="header" id="summary" placeholder={summary} />
-                <button onClick={this.props.submit}>Make Changes</button>    
+                {fields.map( (field) => {
+                    return (
+                    <div>
+                        <label htmlFor={field}>Change {field}</label>
+                        <input onChange={edit} className={section} id={field} />
+                    </div>        
+                )})};
+                <button value ={willChange} id={willChange} onClick={submit}>Make Changes</button>
             </form>
         )
     }
@@ -24,7 +25,3 @@ class Form extends Component {
 
 
 export default Form;
-
-// Find way to generalize form for each respective section!
-
-// Header, ContactInfo, Experience
