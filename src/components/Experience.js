@@ -27,10 +27,3 @@ class Experience extends Component {
 }
 
 export default Experience;
-
-
-    // employerObj = {
-    //     title: Legends;
-    //     years: '2000-2001';
-    //     positions: [{role: Bartender, responsibilities: ['Duties 1', 'Duties 2']}, ...]
-    // }
