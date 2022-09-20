@@ -24,18 +24,26 @@ class App extends Component {
       website: 'mywebsite.com',
      },
 
-      employers: [
-           {
-          name: 'Legends',  
-          years: '2017 - 2020',
-          positions: [{role: 'Bartender', years: '2017-2020', duties: ['Served drinks to loyal customers', 'Ensured safety of employees']}]
-        },
-        {
-          name: 'University of Illinois Foundation',
-          years: '2016 - 2019',
-          positions: [{role: 'Student Development Representative', years: '2017-2020', duties: ['Corresponded with alumni and associates for donations.', 'Conducted alumni outreach for school-related events']}]
-        },
-      ],
+     employers: {
+      'someid1': {
+          'company': 'Legends',
+          'position': 'Bartender',
+          'Dates Worked': '09/2017 - 07/2020',
+          'duties': ['lorem ipsum','lorem ipsum','lorem ipsum']
+      },
+  
+      'someid2': {
+          'position': 'UIF',
+          'Dates Worked': '10/2016 - 10/2019',
+          'duties': ['lorem ipsum','lorem ipsum','lorem ipsum']
+      },
+  
+      'someid3': {
+          'position': 'Chamberlain University',
+          'datesWorked': '03/2021 - 03/2022',
+          'duties': ['lorem ipsum','lorem ipsum','lorem ipsum']
+      }
+    },
 
      changes: {
       header: {
@@ -48,7 +56,7 @@ class App extends Component {
         phone: '',
         location: '',
         website: ''
-      }
+      },
      },
 
      
@@ -122,7 +130,7 @@ class App extends Component {
       {this.state.formVisible.header && <Form willChange={"header"} fields={['name', 'title', 'summary']} edit={this.handleChange} submit={this.submitChanges}/>}
       <ContactInfo email={email} phone={phone} location={location} website={website} showForm={this.toggleForm} />
       {this.state.formVisible.contactInfo && <Form willChange={"contactInfo"} fields={['email', 'phone', 'location', 'website']} edit={this.handleChange} submit={this.submitChanges}/>}
-      <Experience pastJobs={ employers } />
+      <Experience employers = { employers } />
     </div>
     )
   }

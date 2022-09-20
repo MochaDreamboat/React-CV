@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Position from "./Position.js";
+import Employer from "./Employer";
 
 class Experience extends Component {
     constructor(props) {
@@ -7,22 +7,16 @@ class Experience extends Component {
     }
 
     render() {
-        const { pastJobs } = this.props;
+        const { employers } = this.props;
         
     return (
-        <ul>
-            {pastJobs.map((employer) => {
-                return ( 
-                <li>
-                    <h3>{employer.name}</h3>
-                    <h3>{employer.years}</h3>
-                    {employer.positions.map((position) => {
-                        return <Position position={position} />
-                    })}
-                </ li>
-                )})}
-        </ul>
-    )
+        <div>
+            <h2>PROFESSIONAL EXPERIENCE</h2>
+                {Object.keys(employers).map((employer) => {
+                    return <Employer details={employers[employer]} />
+                })}
+        </div>
+    );
     }
 }
 
