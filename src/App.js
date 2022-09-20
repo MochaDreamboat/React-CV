@@ -119,9 +119,9 @@ class App extends Component {
     return (
     <div>
       <Header name={name} title={title} summary={summary} showForm={this.toggleForm} />
-      {this.state.formVisible.header && <Form willChange={"header"} section={"header"} fields={['name', 'title', 'summary']} edit={this.handleChange} submit={this.submitChanges}/>}
+      {this.state.formVisible.header && <Form willChange={"header"} fields={['name', 'title', 'summary']} edit={this.handleChange} submit={this.submitChanges}/>}
       <ContactInfo email={email} phone={phone} location={location} website={website} showForm={this.toggleForm} />
-      {this.state.formVisible.contactInfo && <Form willChange={"contactInfo"} section={"contactInfo"} fields={['email', 'phone', 'location', 'website']} edit={this.handleChange} submit={this.submitChanges}/>}
+      {this.state.formVisible.contactInfo && <Form willChange={"contactInfo"} fields={['email', 'phone', 'location', 'website']} edit={this.handleChange} submit={this.submitChanges}/>}
       <Experience pastJobs={ employers } />
     </div>
     )
