@@ -7,7 +7,7 @@ class Experience extends Component {
     }
 
     render() {
-        const { employers } = this.props;
+        const { employers, showForm } = this.props;
         
     return (
         <div>
@@ -15,6 +15,7 @@ class Experience extends Component {
                 {Object.keys(employers).map((employer) => {
                     return <Employer details={employers[employer]} />
                 })}
+                <button id="experience" onClick={showForm}>+ New Employer</button>
         </div>
     );
     }
