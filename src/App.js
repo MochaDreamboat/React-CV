@@ -75,6 +75,13 @@ class App extends Component {
     this.submitChanges = this.submitChanges.bind(this);
   }
 
+
+  createNewEmployer = (company, position, duties) => {
+    this.company = company;
+    this.position = position;
+    this.duties = duties;
+  }
+
   toggleForm = (e) => {
     const changeToggle = (this.state.formVisible[e.target.id] ? false : true)
     this.setState({
@@ -82,6 +89,11 @@ class App extends Component {
         [e.target.id]: changeToggle
       }
     })
+  }
+
+  // For submitting new Education / Employer
+  newSubmission = (e) => {
+
   }
 
   handleChange = (e) => {
@@ -130,7 +142,8 @@ class App extends Component {
       {this.state.formVisible.header && <Form willChange={"header"} fields={['name', 'title', 'summary']} edit={this.handleChange} submit={this.submitChanges}/>}
       <ContactInfo email={email} phone={phone} location={location} website={website} showForm={this.toggleForm} />
       {this.state.formVisible.contactInfo && <Form willChange={"contactInfo"} fields={['email', 'phone', 'location', 'website']} edit={this.handleChange} submit={this.submitChanges}/>}
-      <Experience employers = { employers } />
+      <Experience employers = { employers } showForm={this.toggleForm}/>
+      {this.state.formVisible.experience && <Form willChange={"employers"} fields = {['company', 'position', 'duties']} edit ={this.handleChange} submit={undefined} />}
     </div>
     )
   }
