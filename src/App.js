@@ -38,11 +38,10 @@ class App extends Component {
 
     },
     employer: {
-      id: uniqid(),
       'company': '',
       'position': '',
       'Dates Worked': '',
-      'duties': ''
+      'duties': []
     },
 
      changes: {
@@ -83,10 +82,6 @@ class App extends Component {
     this.duties = duties;
   }
 
-  createNewEmployer = (e) => {
-
-  }
-
   toggleForm = (e) => {
     const changeToggle = (this.state.formVisible[e.target.id] ? false : true)
     this.setState({
@@ -96,15 +91,28 @@ class App extends Component {
     })
   }
 
+  handleCreate = (e) => {
+    const addTo = e.target.className;
+    const addedValue = e.target.id;
+    this.setState({
+      [addTo]: {
+        ...this.state[addTo],
+        [addedValue]: e.target.value
+      }
+    })
+  }
+
   // For submitting new Education / Employer
   newSubmission = (e) => {
     // Push new employer staged in state to Employers.
     e.preventDefault();
-    const newEmployer = this.state.employer;
     this.setState({
       employers: {
         ...this.state.employers,
-        [newEmployer.id]: newEmployer
+        [uniqid()]: {
+          ...this.state.employer,
+          'duties': this.state.employer.duties.split(', ')
+        }
       }
     })
   }
@@ -120,7 +128,6 @@ class App extends Component {
         }
       }
     })
-    console.log(this.state.changes);
   }
 
   submitChanges = (e) => {
@@ -156,7 +163,7 @@ class App extends Component {
       <ContactInfo email={email} phone={phone} location={location} website={website} showForm={this.toggleForm} />
       {this.state.formVisible.contactInfo && <Form willChange={"contactInfo"} fields={['email', 'phone', 'location', 'website']} edit={this.handleChange} submit={this.submitChanges}/>}
       <Experience employers = { employers } showForm={this.toggleForm}/>
-      {this.state.formVisible.experience && <Form willChange={"employer"} fields = {['company', 'position', 'Dates Worked', 'duties']} edit ={this.handleChange} submit={this.newSubmission} />}
+      {this.state.formVisible.experience && <Form willChange={"employer"} fields = {['company', 'position', 'Dates Worked', 'duties']} edit ={this.handleCreate} submit={this.newSubmission} />}
     </div>
     )
   }
