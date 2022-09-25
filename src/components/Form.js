@@ -9,7 +9,7 @@ class Form extends Component {
     render () {
         const {willChange, fields, edit, submit } = this.props;
         return (
-            <form id="edit-header">
+            <form>
                 {fields.map( (field) => {
                     return (
                     <div>
