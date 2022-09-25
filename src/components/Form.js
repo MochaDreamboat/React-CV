@@ -16,8 +16,8 @@ class Form extends Component {
                         <label htmlFor={field}>Change {field}</label>
                         <input onChange={edit} className={willChange} id={field} />
                     </div>        
-                )})}:
-                <button value ={willChange} id={willChange} onClick={submit}>Make Changes</button>
+                )})}
+                <button value ={willChange} id={willChange} onClick={submit}>Submit Changes</button>
             </form>
         )
     }
