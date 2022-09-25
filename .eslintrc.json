@@ -17,6 +17,7 @@
         "react"
     ],
     "rules": {
+        // Turned off since it is smaller project
         "react/prop-types": ["off"]
     }
 }
