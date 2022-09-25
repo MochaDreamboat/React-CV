@@ -3,6 +3,7 @@ import Form from "./components/Form.js";
 import Header from "./components/Header.js";
 import Experience from "./components/Experience.js";
 import ContactInfo from "./components/ContactInfo.js";
+import uniqid from "uniqid";
 
 class App extends Component {
   constructor() {
@@ -10,6 +11,7 @@ class App extends Component {
 
     this.state = {
      header: {
+      id: 'a',
       name: 'John Smith',
       title: 'Web Developer',
       summary: 'A fledgling developer looking to make moooves.',
@@ -18,6 +20,7 @@ class App extends Component {
      },
 
      contactInfo: {
+      id: 'b',
       email: 'johnsmith@gmail.com',
       phone: '111-111-1111',
       location: 'Chicago, IL',
@@ -26,23 +29,20 @@ class App extends Component {
 
      employers: {
       'someid1': {
+          id: '1',
           'company': 'Legends',
           'position': 'Bartender',
           'Dates Worked': '09/2017 - 07/2020',
           'duties': ['lorem ipsum','lorem ipsum','lorem ipsum']
       },
-  
-      'someid2': {
-          'position': 'UIF',
-          'Dates Worked': '10/2016 - 10/2019',
-          'duties': ['lorem ipsum','lorem ipsum','lorem ipsum']
-      },
-  
-      'someid3': {
-          'position': 'Chamberlain University',
-          'datesWorked': '03/2021 - 03/2022',
-          'duties': ['lorem ipsum','lorem ipsum','lorem ipsum']
-      }
+
+    },
+    employer: {
+      id: uniqid(),
+      'company': '',
+      'position': '',
+      'Dates Worked': '',
+      'duties': ''
     },
 
      changes: {
@@ -57,6 +57,7 @@ class App extends Component {
         location: '',
         website: ''
       },
+
      },
 
      
@@ -76,10 +77,14 @@ class App extends Component {
   }
 
 
-  createNewEmployer = (company, position, duties) => {
+  Employer = (company, position, duties) => {
     this.company = company;
     this.position = position;
     this.duties = duties;
+  }
+
+  createNewEmployer = (e) => {
+
   }
 
   toggleForm = (e) => {
@@ -93,7 +98,15 @@ class App extends Component {
 
   // For submitting new Education / Employer
   newSubmission = (e) => {
-
+    // Push new employer staged in state to Employers.
+    e.preventDefault();
+    const newEmployer = this.state.employer;
+    this.setState({
+      employers: {
+        ...this.state.employers,
+        [newEmployer.id]: newEmployer
+      }
+    })
   }
 
   handleChange = (e) => {
@@ -143,7 +156,7 @@ class App extends Component {
       <ContactInfo email={email} phone={phone} location={location} website={website} showForm={this.toggleForm} />
       {this.state.formVisible.contactInfo && <Form willChange={"contactInfo"} fields={['email', 'phone', 'location', 'website']} edit={this.handleChange} submit={this.submitChanges}/>}
       <Experience employers = { employers } showForm={this.toggleForm}/>
-      {this.state.formVisible.experience && <Form willChange={"employers"} fields = {['company', 'position', 'duties']} edit ={this.handleChange} submit={undefined} />}
+      {this.state.formVisible.experience && <Form willChange={"employer"} fields = {['company', 'position', 'Dates Worked', 'duties']} edit ={this.handleChange} submit={this.newSubmission} />}
     </div>
     )
   }
