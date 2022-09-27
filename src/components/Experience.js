@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Employer from "./Employer";
-
 class Experience extends Component {
     constructor(props) {
         super(props);
@@ -11,9 +10,9 @@ class Experience extends Component {
         
     return (
         <div>
-            <h2>PROFESSIONAL EXPERIENCE</h2>
+            <h2 id="experienceLabel">PROFESSIONAL EXPERIENCE</h2>
                 {Object.keys(employers).map((employer) => {
-                    return <Employer details={employers[employer]} />
+                    return <Employer details={employers[employer]} key={employer} />
                 })}
                 <button id="experience" onClick={showForm}>+ New Employer</button>
         </div>
