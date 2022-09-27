@@ -1,4 +1,5 @@
 import React from 'react';
+import uniqid from 'uniqid';
 
 function Employer ({ details }) {
     return (
@@ -8,13 +9,13 @@ function Employer ({ details }) {
             <h3>{details['Dates Worked']}</h3>
             <ul>
                 {details.duties.map((duty) => {
-                    return <li>{duty}</li>
+                    return <li key={uniqid()}>{duty}</li>
                 })}
             </ul>
         </div>
         
-    );
-};
+    )
+}
 
 export default Employer;
 
