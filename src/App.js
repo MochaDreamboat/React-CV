@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Form from "./components/Form.js";
 import Header from "./components/Header.js";
+import Header2 from "./components/sandbox.js";
 import ContactInfo from "./components/ContactInfo.js";
 import Experience from "./components/Experience.js";
 import Education from "./components/Education.js";
@@ -176,20 +177,21 @@ class App extends Component {
     const employers = this.state.employers;
     return (
       <div>
-        <Header
+        <Header2 />
+        {/* <Header
           name={name}
           title={title}
           summary={summary}
           showForm={this.toggleForm}
-        />
-        {this.state.formVisible.header && (
-          <Form
+        /> */}
+        {/* {this.state.formVisible.header && (
+          <Form                             Temporarily taken out for Header2
             willChange={"header"}
             fields={["name", "title", "summary"]}
             edit={this.handleChange}
             submit={this.submitChanges}
           />
-        )}
+        )} */}
         <ContactInfo
           email={email}
           phone={phone}
