@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import './styles/App.css';
 import Form from "./components/Form.js";
 import Header from "./components/Header.js";
-import { ContactInfo2 } from "./components/sandbox.js";
 import ContactInfo from "./components/ContactInfo.js";
 import Experience from "./components/Experience.js";
 import Education from "./components/Education.js";
@@ -13,23 +13,6 @@ class App extends Component {
     super();
 
     this.state = {
-      header: {
-        id: "a",
-        name: "John Smith",
-        title: "Web Developer",
-        summary: "A fledgling developer looking to make moooves.",
-        skills: [],
-        pic: undefined,
-      },
-
-      contactInfo: {
-        id: "b",
-        email: "johnsmith@gmail.com",
-        phone: "111-111-1111",
-        location: "Chicago, IL",
-        website: "mywebsite.com",
-      },
-
       employers: {
         someid1: {
           company: "Legends",
@@ -176,22 +159,7 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <ContactInfo2 />
-        {/* <ContactInfo
-          email={email}
-          phone={phone}
-          location={location}
-          website={website}
-          showForm={this.toggleForm}
-        />
-        {this.state.formVisible.contactInfo && (
-          <Form
-            willChange={"contactInfo"}
-            fields={["email", "phone", "location", "website"]}
-            edit={this.handleChange}
-            submit={this.submitChanges}
-          />
-        )} */}
+        <ContactInfo />
         <Experience employers={employers} showForm={this.toggleForm} />
         {this.state.formVisible.experience && (
           <Form
