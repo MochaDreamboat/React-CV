@@ -1,8 +1,3 @@
-// Grabs from personalInfo obj:
-// personalInfo.name
-// personalInfo.title
-//personalInfo.pic
-
 import React, { useState } from "react";
 
 function Header () {
@@ -20,7 +15,9 @@ function Header () {
       fieldText: "lorem ipsum something something...",
       editingOn: false,
     });
-  
+    
+    // Grabs input from conditionally rendered input field and modifies
+    // state with onClick event.
     const submitChange = (field, setField) => {
       const change = document.getElementById(field).value;
       setField({fieldText: change, editingOn: false});
@@ -31,6 +28,7 @@ function Header () {
     // Conditonal rendering based on whether or not editing is T or F.
     return (
       <section>
+        {/* Render affected by click event changing field's setField property to true or false */}
         {name.editingOn ? (
           <div>
             <input placeholder={name.fieldText} id="name"/>
