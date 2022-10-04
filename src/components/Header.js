@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 
+// Grabs input from conditionally rendered input field and modifies
+// state with onClick event.
+function submitChange (field, setField) {
+    const change = document.getElementById(field).value;
+    setField({fieldText: change, editingOn: false});
+  }
+
 function Header () {
     // Each field has a state object holding key/value pair for content and whether or not user is editing.
   
@@ -15,13 +22,6 @@ function Header () {
       fieldText: "lorem ipsum something something...",
       editingOn: false,
     });
-    
-    // Grabs input from conditionally rendered input field and modifies
-    // state with onClick event.
-    const submitChange = (field, setField) => {
-      const change = document.getElementById(field).value;
-      setField({fieldText: change, editingOn: false});
-    }
   
     // Should include a button that appears when hovered
     // That lets user edit field in place.
@@ -118,3 +118,4 @@ function Header () {
   }
 
 export default Header;
+export { submitChange };
