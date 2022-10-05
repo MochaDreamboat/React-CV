@@ -1,114 +1,133 @@
-import React, { useState } from "react";
-import { submitChange } from "./Header";
+import React from "react";
 
-function ContactInfo () {
-  const [email, setEmail] = useState({
-    fieldText: "email@email.com",
-    editingOn: false,
-  });
-  const [phone, setPhone] = useState({
-    fieldText: "555-555-5555",
-    editingOn: false,
-  });
-  const [location, setLocation] = useState({
-    fieldText: "Some City, MD",
-    editingOn: false,
-  });
-  const [website, setWebsite] = useState({
-    fieldText: "somewebsite@somewebsite.com",
-    editingOn: false,
-  });
+function ContactInfo (props) {
+  const { data, setData, submit } = props;
 
   return (
-    <div>
+    <section id="contact-info">
       <ul style={{listStyleType: 'none'}}>
-        {email.editingOn ? (
+        {data.email.editingOn ? (
           <li>
-            <input placeholder={email.fieldText} id="email"/>
+            <input placeholder={data.email.fieldText} id="email"/>
             <button
-              onClick={() => submitChange("email", setEmail)}>
+              onClick={() => submit(data, "email", setData)}>
                 Change
               </button>
             <button
-              onClick={() => setEmail({fieldText: email.fieldText, editingOn: false})}>
-                X
+              onClick={() =>
+                setData({
+                ...data,
+                email: {fieldText: data.email.fieldText, editingOn: false},
+              })
+            }
+          >
+            X
               </button>
           </li>
         ) : (
           <li>
-            <p>{email.fieldText}</p>
+            <p>{data.email.fieldText}</p>
             <button onClick={() =>
-              setEmail({ fieldText: email.fieldText, editingOn: true})}>
+              setData({
+                ...data,
+                email: {fieldText: data.email.fieldText, editingOn: true}})}>
                 Edit
               </button>
           </li>
         )}
-        {phone.editingOn ? (
+
+        {data.phone.editingOn ? (
           <li>
-            <input placeholder={phone.fieldText} id="phone"/>
+            <input placeholder={data.phone.fieldText} id="phone"/>
             <button
-              onClick={() => submitChange("phone", setPhone)}>
+              onClick={() => submit(data, "phone", setData)}>
                 Change
               </button>
             <button
-              onClick={() => setPhone({fieldText: phone.fieldText, editingOn: false})}>
-                X
+              onClick={() =>
+                setData({
+                ...data,
+                phone: {fieldText: data.phone.fieldText, editingOn: false},
+              })
+            }
+          >
+            X
               </button>
           </li>
         ) : (
           <li>
-            <p>{phone.fieldText}</p>
+            <p>{data.phone.fieldText}</p>
             <button onClick={() =>
-              setPhone({ fieldText: phone.fieldText, editingOn: true})}>
+              setData({
+                ...data,
+                phone: {fieldText: data.phone.fieldText, editingOn: true}
+                })}>
                 Edit
               </button>
           </li>
         )}
-        {location.editingOn ? (
+
+        {data.location.editingOn ? (
           <li>
-            <input placeholder={location.fieldText} id="location"/>
+            <input placeholder={data.location.fieldText} id="location"/>
             <button
-              onClick={() => submitChange("location", setLocation)}>
+              onClick={() => submit(data, "location", setData)}>
                 Change
               </button>
             <button
-              onClick={() => setLocation({fieldText: location.fieldText, editingOn: false})}>
-                X
+              onClick={() =>
+                setData({
+                ...data,
+                location: {fieldText: data.location.fieldText, editingOn: false},
+              })
+            }
+          >
+            X
               </button>
           </li>
         ) : (
           <li>
-            <p>{location.fieldText}</p>
+            <p>{data.location.fieldText}</p>
             <button onClick={() =>
-              setLocation({ fieldText: location.fieldText, editingOn: true})}>
+              setData({
+                ...data,
+                location: {fieldText: data.location.fieldText, editingOn: true}})}>
                 Edit
               </button>
           </li>
         )}
-        {website.editingOn ? (
+
+        {data.website.editingOn ? (
           <li>
-            <input placeholder={location.fieldText} id="website"/>
+            <input placeholder={data.website.fieldText} id="website"/>
             <button
-              onClick={() => submitChange("phone", setWebsite)}>
+              onClick={() => submit(data, "website", setData)}>
                 Change
               </button>
             <button
-              onClick={() => setWebsite({fieldText: website.fieldText, editingOn: false})}>
-                X
+              onClick={() =>
+                setData({
+                ...data,
+                website: {fieldText: data.website.fieldText, editingOn: false},
+              })
+            }
+          >
+            X
               </button>
           </li>
         ) : (
           <li>
-            <p>{website.fieldText}</p>
+            <p>{data.website.fieldText}</p>
             <button onClick={() =>
-              setWebsite({ fieldText: website.fieldText, editingOn: true})}>
+              setData({
+                ...data,
+                website: {fieldText: data.website.fieldText, editingOn: true}})}>
                 Edit
               </button>
           </li>
-        )}
+        )}    
       </ul>
-      <button id="contactInfo">Edit</button>
-    </div>
+    </section>
   );
 }
 export default ContactInfo;
