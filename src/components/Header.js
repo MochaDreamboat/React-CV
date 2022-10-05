@@ -1,51 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-// Grabs input from conditionally rendered input field and modifies
-// state with onClick event.
-
-function submitChange(obj, field, setFunction) {
-  const change = document.getElementById(field).value;
-  setFunction({
-    ...obj,
-    [field]: {
-      fieldText: change,
-      editingOn: false,
-    },
-  });
-}
-function Header() {
+function Header (props) {
   // Each field has a state object holding key/value pair for content and whether or not user is editing.
-  const [headerData, setHeaderData] = useState({
-    name: { fieldText: "insert name here", editingOn: false },
-    title: { fieldText: "insert title here", editingOn: false },
-    summary: { fieldText: "insert summary here", editingOn: false },
-  });
-
+  const { data, setData, submit} = props;
   // Should update top level state with header data.
-  useEffect(() => {
-    console.log("component updated");
-  }, [headerData]);
 
-  const { name, title, summary } = headerData;
   // Should include a button that appears when hovered
   // That lets user edit field in place.
   // Conditonal rendering based on whether or not editing is T or F.
   return (
-    <section>
+    <section id="header">
       {/* Render affected by click event changing field's setField property to true or false */}
-      {name.editingOn ? (
+      {data.name.editingOn ? (
         <div>
-          <input placeholder={name.fieldText} id="name" />
+          <input placeholder={data.name.fieldText} id="name" />
           <button
-            onClick={() => submitChange(headerData, "name", setHeaderData)}
+            onClick={() => submit(data, "name", setData)}
           >
             Change
           </button>
           <button
             onClick={() =>
-              setHeaderData({
-                ...headerData,
-                name: { fieldText: name.fieldText, editingOn: false },
+              setData({
+                ...data,
+                name: { fieldText: data.name.fieldText, editingOn: false },
               })
             }
           >
@@ -54,12 +32,12 @@ function Header() {
         </div>
       ) : (
         <div>
-          <h1 id="name">{name.fieldText}</h1>
+          <h1 id="name">{data.name.fieldText}</h1>
           <button
             onClick={() =>
-              setHeaderData({
-                ...headerData,
-                name: { fieldText: name.fieldText, editingOn: true },
+              setData({
+                ...data,
+                name: { fieldText: data.name.fieldText, editingOn: true },
               })
             }
           >
@@ -68,19 +46,20 @@ function Header() {
         </div>
       )}
 
-      {title.editingOn ? (
+      {/* Render affected by click event changing field's setField property to true or false */}
+      {data.title.editingOn ? (
         <div>
-          <input placeholder={title.fieldText} id="title" />
+          <input placeholder={data.title.fieldText} id="title" />
           <button
-            onClick={() => submitChange(headerData, "title", setHeaderData)}
+            onClick={() => submit(data, "title", setData)}
           >
             Change
           </button>
           <button
             onClick={() =>
-              setHeaderData({
-                ...headerData,
-                title: { fieldText: title.fieldText, editingOn: false },
+              setData({
+                ...data,
+                title: { fieldText: data.title.fieldText, editingOn: false },
               })
             }
           >
@@ -89,12 +68,12 @@ function Header() {
         </div>
       ) : (
         <div>
-          <h1 id="title">{title.fieldText}</h1>
+          <h1 id="title">{data.title.fieldText}</h1>
           <button
             onClick={() =>
-              setHeaderData({
-                ...headerData,
-                title: { fieldText: title.fieldText, editingOn: true },
+              setData({
+                ...data,
+                title: { fieldText: data.title.fieldText, editingOn: true },
               })
             }
           >
@@ -103,19 +82,19 @@ function Header() {
         </div>
       )}
 
-      {summary.editingOn ? (
+      {data.summary.editingOn ? (
         <div>
-          <input placeholder={summary.fieldText} id="summary" />
+          <input placeholder={data.summary.fieldText} id="summary" />
           <button
-            onClick={() => submitChange(headerData, "summary", setHeaderData)}
+            onClick={() => submit(data, "summary", setData)}
           >
             Change
           </button>
           <button
             onClick={() =>
-              setHeaderData({
-                ...headerData,
-                summary: { fieldText: summary.fieldText, editingOn: false },
+              setData({
+                ...data,
+                summary: { fieldText: data.summary.fieldText, editingOn: false },
               })
             }
           >
@@ -124,12 +103,12 @@ function Header() {
         </div>
       ) : (
         <div>
-          <h1 id="summary">{summary.fieldText}</h1>
+          <h1 id="title">{data.summary.fieldText}</h1>
           <button
             onClick={() =>
-              setHeaderData({
-                ...headerData,
-                summary: { fieldText: summary.fieldText, editingOn: true },
+              setData({
+                ...data,
+                summary: { fieldText: data.summary.fieldText, editingOn: true },
               })
             }
           >
@@ -137,9 +116,11 @@ function Header() {
           </button>
         </div>
       )}
+
+      
     </section>
   );
 }
 
 export default Header;
-export { submitChange };
+
