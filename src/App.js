@@ -1,189 +1,82 @@
-import React, { Component } from "react";
-import './styles/App.css';
-import Form from "./components/Form.js";
+import React, { useState } from "react";
 import Header from "./components/Header.js";
-import ContactInfo from "./components/ContactInfo.js";
-import Experience from "./components/Experience.js";
-import Education from "./components/Education.js";
+import './styles/App.css';
+function App() {
 
-import uniqid from "uniqid";
+  // State Hooks related to CV functions.
+  const [headerData, setHeaderData] = useState({
+    name: { fieldText: "insert name here", editingOn: false },
+    title: { fieldText: "insert title here", editingOn: false },
+    summary: { fieldText: "insert summary here", editingOn: false },
+  });
 
-class App extends Component {
-  constructor() {
-    super();
+  const [contactInfoData, setContactInfoData] = useState({
+    email: { fieldText: "insert email here", editingOn: false },
+    phone: { fieldText: "555-555-5555", editingOn: false },
+    location: { fieldText: "Some City, MD", editingOn: false },
+    website: { fieldText: "mywebsite@mywebsite.com", editingOn: false },
+  });
 
-    this.state = {
-      employers: {
-        someid1: {
-          company: "Legends",
-          position: "Bartender",
-          "Dates Worked": "09/2017 - 07/2020",
-          duties: ["lorem ipsum", "lorem ipsum", "lorem ipsum"],
-        },
-      },
+  const [skills, setSkills] = useState([]);
 
-      education: {
-        institution1: {
-          graduation: "Bachelor's Degree in Behavioral Neuroscience",
-          almaMater: "University of Illinois at Urbana-Champaign",
-          attended: "2019-2021",
-        },
-      },
+  const [workExperience, setWorkExperience] = useState({
+    employerID: {
+      company: "",
+      position: "",
+      datesWorked: "", 
+      duties: [],
+    },
+    employerID2: {
+      company: "",
+      position: "",
+      datesWorked: "",
+      duties: [],
+    },
 
-      // For submitting new employer. Object pushed to employers state and cleared upon submission.
-      employer: {
-        company: "",
-        position: "",
-        "Dates Worked": "",
-        duties: [],
-      },
-
-      educator: {
-        graduation: "",
-        almaMater: "",
-        attended: "",
-      },
-
-      changes: {
-        header: {
-          name: "",
-          title: "",
-          summary: "",
-        },
-        contactInfo: {
-          email: "",
-          phone: "",
-          location: "",
-          website: "",
-        },
-      },
-
-      formVisible: {
-        header: false,
-        contactInfo: false,
-        experience: false,
-        education: false,
-      },
-
-      pastJobs: [],
-    };
-
-    this.toggleForm = this.toggleForm.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.submitChanges = this.submitChanges.bind(this);
-  }
-
-  toggleForm = (e) => {
-    const changeToggle = this.state.formVisible[e.target.id] ? false : true;
-    this.setState({
-      formVisible: {
-        [e.target.id]: changeToggle,
-      },
-    });
-  };
-
-  handleCreate = (e) => {
-    const addTo = e.target.className;
-    const addedValue = e.target.id;
-    this.setState({
-      [addTo]: {
-        ...this.state[addTo],
-        [addedValue]: e.target.value,
-      },
-    });
-  };
-
-  // For submitting new Employer
-  newEmployerSubmission = (e) => {
-    // Push new employer staged in state to Employers.
-    e.preventDefault();
-    this.setState({
-      employers: {
-        ...this.state.employers,
-        [uniqid()]: {
-          ...this.state.employer,
-          duties: this.state.employer.duties.split(", "),
-        },
-      },
-    });
-  };
-
-  newEducatorSubmission = (e) => {
-    e.preventDefault();
-    this.setState({
-      education: {
-        ...this.state.education,
-        [uniqid()]: {
-          ...this.state.educator
-        }
-      }
-    })
-  };
-
-  handleChange = (e) => {
-    let changeCategory = e.target.className;
-    let changedValue = e.target.id;
-    this.setState({
-      changes: {
-        [changeCategory]: {
-          ...this.state.changes[changeCategory],
-          [changedValue]: e.target.value,
-        },
-      },
-    });
-  };
-
-  submitChanges = (e) => {
-    e.preventDefault();
-    const changeCategory = e.target.id;
-    const edits = this.state.changes[changeCategory];
-    this.setState({
-      [changeCategory]: {
-        ...this.state[changeCategory],
-        ...edits,
-      },
-      formVisible: false,
-    });
-    for (let field in edits) {
-      this.setState({
-        edits: {
-          ...edits,
-          [field]: "",
-        },
-      });
+    createEmployer: {
+      company: "",
+      position: "",
+      datesWorked: "",
+      duties: []
     }
-  };
+  });
 
-  render() {
-    const employers = this.state.employers;
-    return (
-      <div>
-        <Header />
-        <ContactInfo />
-        <Experience employers={employers} showForm={this.toggleForm} />
-        {this.state.formVisible.experience && (
-          <Form
-            willChange={"employer"}
-            fields={["company", "position", "Dates Worked", "duties"]}
-            edit={this.handleCreate}
-            submit={this.newEmployerSubmission}
-          />
-        )}
-        <Education
-          education={this.state.education}
-          showForm={this.toggleForm}
-        />
-        {this.state.formVisible.education && (
-          <Form
-            willChange={"educator"}
-            fields={["graduation", "almaMater", "attended"]}
-            edit={this.handleCreate}
-            submit={this.newEducatorSubmission}
-          />
-        )}
-      </div>
-    );
+  const [education, setEducation] = useState({
+    institution1: {
+      graduation: "",
+      almaMater: "",
+      attended: "",
+    },
+    institution2: {
+      graduation: "",
+      almaMater: "",
+      attended: "",
+    },
+
+    createInstitution: {
+      graduation: "",
+      almaMater: "",
+      attended: "",
+    },
+  });
+  // Logic for Header/Contact Info
+  function submitChange(obj, field, setFunction) {
+    const change = document.getElementById(field).value;
+    setFunction({
+      ...obj,
+      [field]: {
+        fieldText: change,
+        editingOn: false,
+      },
+    });
   }
+
+  return (
+    <div>
+      <Header data={headerData} setData={setHeaderData} submit={submitChange}/>
+      {/* <ContactInfo data={contactInfoData} setData={setContactInfoData} submit={submitChange}/> */}
+    </div>
+  );
 }
 
 export default App;
