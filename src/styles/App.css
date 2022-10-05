@@ -1,6 +1,15 @@
 body {
     font-family: sans-serif;
-    display: flex;
+    box-sizing: border-box;
     justify-content: center;
     background-color: beige;
+}
+
+li {
+    display: flex;
+}
+
+#top {
+    display: flex;
+    justify-content: space-between;
 }
