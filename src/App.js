@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Header from "./components/Header.js";
+import ContactInfo from "./components/ContactInfo.js";
 import './styles/App.css';
+
 function App() {
 
   // State Hooks related to CV functions.
@@ -17,6 +19,7 @@ function App() {
     website: { fieldText: "mywebsite@mywebsite.com", editingOn: false },
   });
 
+  // Still needs component file for this...
   const [skills, setSkills] = useState([]);
 
   const [workExperience, setWorkExperience] = useState({
@@ -73,8 +76,10 @@ function App() {
 
   return (
     <div>
-      <Header data={headerData} setData={setHeaderData} submit={submitChange}/>
-      {/* <ContactInfo data={contactInfoData} setData={setContactInfoData} submit={submitChange}/> */}
+      <section id="top">
+        <Header data={headerData} setData={setHeaderData} submit={submitChange}/>
+        <ContactInfo data={contactInfoData} setData={setContactInfoData} submit={submitChange}/>
+      </section>
     </div>
   );
 }
