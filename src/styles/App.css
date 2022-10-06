@@ -3,6 +3,10 @@ body {
     box-sizing: border-box;
     justify-content: center;
     background-color: beige;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
 li {
@@ -12,4 +16,11 @@ li {
 #top {
     display: flex;
     justify-content: space-between;
+}
+
+#middle {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    border: 5px solid red;
 }
