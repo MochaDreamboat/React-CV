@@ -1,19 +1,29 @@
 import React from 'react';
 import uniqid from 'uniqid';
 
-function Employer ({ details }) {
+// import Form from './components/Form.js';
+function Employer (props) {
+    const { data } = props;
     return (
         <div>
-            <h3>{details.position}</h3>
-            <h3>{details.company}</h3>
-            <h3>{details['Dates Worked']}</h3>
-            <ul>
-                {details.duties.map((duty) => {
-                    return <li key={uniqid()}>{duty}</li>
-                })}
-            </ul>
-        </div>
-        
+            {/* Iterate over data keys
+            and render below for each key */
+            Object.keys(data).map((employer) => {
+                console.log(employer);
+                return (
+                <div key={Math.random()} className="employer">
+                    <h3>{data[employer].company}</h3>
+                    <h3>{data[employer].position}</h3>
+                    <h3>{data[employer].datesWorked}</h3>
+                    <ul>
+                        {data[employer].duties.map((duty) => {
+                            return <li key={uniqid()}>{duty}</li>
+                        })}
+                    </ul>
+                </div>
+                )
+            })}
+        </div>        
     )
 }
 
