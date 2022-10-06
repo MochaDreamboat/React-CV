@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "./components/Header.js";
 import ContactInfo from "./components/ContactInfo.js";
+import Employer from "./components/Employer.js";
 import './styles/App.css';
 
 function App() {
@@ -24,23 +25,16 @@ function App() {
 
   const [workExperience, setWorkExperience] = useState({
     employerID: {
-      company: "",
-      position: "",
-      datesWorked: "", 
-      duties: [],
+      company: "lorem ipsum bellum",
+      position: "ur mom",
+      datesWorked: "1969-2020", 
+      duties: ['lived fast', 'died young'],
     },
     employerID2: {
-      company: "",
-      position: "",
-      datesWorked: "",
-      duties: [],
-    },
-
-    createEmployer: {
-      company: "",
-      position: "",
-      datesWorked: "",
-      duties: []
+      company: "Legends Bar and Grill",
+      position: "Bartender",
+      datesWorked: "2017-2020",
+      duties: ["Served drinks at bar", "Managed employees", "ensured security of patrons"],
     }
   });
 
@@ -48,20 +42,35 @@ function App() {
     institution1: {
       graduation: "",
       almaMater: "",
-      attended: "",
+      attended: ""
     },
     institution2: {
       graduation: "",
       almaMater: "",
-      attended: "",
+      attended: ""
     },
 
     createInstitution: {
       graduation: "",
       almaMater: "",
-      attended: "",
+      attended: ""
     },
   });
+
+  const [edit, setEdit] = useState({
+    createEmployer: {
+      company: "",
+      position: "",
+      datesWorked: "",
+      duties: []
+    },
+
+    createEducator: {
+      graduation: "",
+      almaMater: "",
+      attended: ""
+    }
+  })
   // Logic for Header/Contact Info
   function submitChange(obj, field, setFunction) {
     const change = document.getElementById(field).value;
@@ -79,6 +88,9 @@ function App() {
       <section id="top">
         <Header data={headerData} setData={setHeaderData} submit={submitChange}/>
         <ContactInfo data={contactInfoData} setData={setContactInfoData} submit={submitChange}/>
+      </section>
+      <section id="middle">
+        <Employer data={workExperience} id="test"/>
       </section>
     </div>
   );
