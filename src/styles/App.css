@@ -13,6 +13,10 @@ li {
     display: flex;
 }
 
+label {
+    display: block;
+}
+
 #top {
     display: flex;
     justify-content: space-between;
