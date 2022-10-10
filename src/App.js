@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "./components/Header.js";
 import ContactInfo from "./components/ContactInfo.js";
 import Employer from "./components/Employer.js";
+import Form from "./components/Form.js";
 import './styles/App.css';
 
 function App() {
@@ -57,6 +58,11 @@ function App() {
     },
   });
 
+  const [formToggle, setFormToggle] = useState({
+    employer: false,
+    education: false
+  });
+
   const [edit, setEdit] = useState({
     createEmployer: {
       company: "",
@@ -83,6 +89,18 @@ function App() {
     });
   }
 
+  function handleFormChange (e, toEdit) {
+   const fieldChange = e.target.value;
+   const field = e.target.name;
+   setEdit({
+    [toEdit]: {
+      ...edit[toEdit],
+      [field]: fieldChange
+    }
+   })
+   console.log(toEdit);
+  }
+
   return (
     <div>
       <section id="top">
@@ -91,6 +109,11 @@ function App() {
       </section>
       <section id="middle">
         <Employer data={workExperience} id="test"/>
+        {formToggle.employer == true ?
+            <Form toEdit={edit.createEmployer} change={handleFormChange} submit={undefined}/>
+            :
+            <button onClick={() => setFormToggle({...formToggle, employer: true})}>New +</button>  
+            }
       </section>
     </div>
   );
