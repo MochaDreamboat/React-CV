@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import uniqid from 'uniqid';
-import Form from './Form.js';
 
 function Employer (props) {
-    const { data, edits } = props;
-    const [formToggle, setFormToggle] = useState(false);
+    const { data } = props;
     return (
         <div>
             {/* Iterate over data keys
@@ -23,11 +21,6 @@ function Employer (props) {
                 </div>
                 )
             })}
-            {formToggle == true ?
-            <Form edits={edits} />
-            :
-            <button onClick={() => setFormToggle(true)}>New +</button>  
-            }
         </div>      
     )
 }
