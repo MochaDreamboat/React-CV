@@ -3,6 +3,7 @@ import Header from "./components/Header.js";
 import ContactInfo from "./components/ContactInfo.js";
 import Employer from "./components/Employer.js";
 import Form from "./components/Form.js";
+import uniqid from "uniqid";
 import './styles/App.css';
 
 function App() {
@@ -97,7 +98,22 @@ function App() {
       ...edit[toEdit],
       [field]: fieldChange
     }
-   })``
+   })
+   console.log(edit.createEmployer);
+  }
+
+  function submitEntry (e) {
+    // Push createEmployer edit to workExperience
+    e.preventDefault();
+    if (e.target.id == "work-form") {
+      setWorkExperience({
+        ...workExperience,
+        [uniqid()]: {
+          ...edit.createEmployer,
+          duties: edit.createEmployer.duties.split(', ')
+        } 
+      })
+    }
   }
 
   return (
@@ -109,7 +125,7 @@ function App() {
       <section id="middle">
         <Employer data={workExperience} id="test"/>
         {formToggle.employer == true ?
-            <Form section="createEmployer" toEdit={edit.createEmployer} change={handleFormChange}/>
+            <Form section="createEmployer" toEdit={edit.createEmployer} change={handleFormChange} submit={submitEntry}/>
             :
             <button onClick={() => setFormToggle({...formToggle, employer: true})}>New +</button>  
             }
