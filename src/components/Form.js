@@ -5,21 +5,24 @@ import React from 'react';
 
 function Form (props) {
     // Edited: denotes state object in which changes will be submitted.
-    const { edits } = props;
+    const { section, toEdit, change }= props;
 
     return (
         <section className="form">
             <form>
                 {
-                Object.keys(edits[0]).map((field) => {
+                Object.keys(toEdit).map((field) => {
                     return (
                         <label key={field}>
                             {field}:
-                            <input type="text" name={field} />
+                            <input type="text" name={field} onChange={(e) => {
+                                change(e, section)
+                            }}/>
                         </label>
                     )
                 })
                 }
+                <button type="submit">Submit</button>
             </form>
         </section>
     )

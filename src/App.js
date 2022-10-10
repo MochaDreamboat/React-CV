@@ -97,8 +97,7 @@ function App() {
       ...edit[toEdit],
       [field]: fieldChange
     }
-   })
-   console.log(toEdit);
+   })``
   }
 
   return (
@@ -110,7 +109,7 @@ function App() {
       <section id="middle">
         <Employer data={workExperience} id="test"/>
         {formToggle.employer == true ?
-            <Form toEdit={edit.createEmployer} change={handleFormChange} submit={undefined}/>
+            <Form section="createEmployer" toEdit={edit.createEmployer} change={handleFormChange}/>
             :
             <button onClick={() => setFormToggle({...formToggle, employer: true})}>New +</button>  
             }
