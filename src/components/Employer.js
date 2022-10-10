@@ -23,6 +23,7 @@ function Employer (props) {
                 </div>
                 )
             })}
+            <button>New +</button>
         </div>        
     )
 }
