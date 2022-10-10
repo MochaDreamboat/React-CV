@@ -9,7 +9,6 @@ function Employer (props) {
             {/* Iterate over data keys
             and render below for each key */
             Object.keys(data).map((employer) => {
-                console.log(employer);
                 return (
                 <div key={Math.random()} className="employer">
                     <h3>{data[employer].company}</h3>
@@ -23,6 +22,7 @@ function Employer (props) {
                 </div>
                 )
             })}
+
             <button>New +</button>
         </div>        
     )
