@@ -1,27 +1,29 @@
-import React, { Component } from "react";
+import React from 'react';
 
-class Form extends Component {
-    constructor(props) {
-        super(props);
+// Accepts state and useState function for respective Hook.
+// Iterates over state Keys and makes them input fields.
 
-    }
+function Form (props) {
+    // Edited: denotes state object in which changes will be submitted.
+    const { edits } = props;
 
-    render () {
-        const {willChange, fields, edit, submit } = this.props;
-        return (
+    return (
+        <section className="form">
             <form>
-                {fields.map( (field) => {
+                {
+                Object.keys(edits[0]).map((field) => {
                     return (
-                    <div key={field}>
-                        <label htmlFor={field}>Change {field}</label>
-                        <input onChange={edit} className={willChange} id={field} />
-                    </div>      
-                )})}
-                <button value ={willChange} id={willChange} onClick={submit}>Submit Changes</button>
+                        <label key={field}>
+                            {field}:
+                            <input type="text" name={field} />
+                        </label>
+                    )
+                })
+                }
             </form>
-        )
-    }
-}
+        </section>
+    )
 
+}
 
 export default Form;
