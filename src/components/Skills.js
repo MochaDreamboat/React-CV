@@ -8,7 +8,9 @@ function Skills (props) {
         <section id="skills">
             {skills.map((skill) => {
                 return (
-                    <span className="skill" key={uniqid()}>{skill}</span>
+                    <div className="skill" key={uniqid()}>
+                        <span>{skill}</span>
+                    </div>
                 )
             })
         }
