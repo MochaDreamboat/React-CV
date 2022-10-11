@@ -17,16 +17,42 @@ label {
     display: block;
 }
 
+button {
+    align-self: center;
+}
+#skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+}
+
+.skill {
+    height: fit-content;
+    width: fit-content;
+    padding: .5em;
+    border-radius: 5px;
+    background-color: yellowgreen;
+}
+
+#top, #middle, #bottom {
+    width: 80vw;
+    margin-top: 2em;
+}
 #top {
     display: flex;
     justify-content: space-between;
 }
 
 #middle {
-    width: 80vw;
     display: flex;
     flex-direction: column;
     flex-grow: 0;
     align-items: center;
     border: 5px solid red;
+}
+
+#bottom {
+    display: flex;
+    justify-content: center;
 }
