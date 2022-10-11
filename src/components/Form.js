@@ -9,7 +9,7 @@ function Form (props) {
 
     return (
         <section className="form">
-            <form id="work-form" onSubmit={submit}>
+            <form id={section} onSubmit={submit}>
                 {
                 Object.keys(toEdit).map((field) => {
                     return (

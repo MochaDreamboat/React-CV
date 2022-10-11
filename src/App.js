@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "./components/Header.js";
 import ContactInfo from "./components/ContactInfo.js";
 import Employer from "./components/Employer.js";
+import Education from "./components/Education.js";
 import Form from "./components/Form.js";
 import uniqid from "uniqid";
 import './styles/App.css';
@@ -36,20 +37,9 @@ function App() {
 
   const [education, setEducation] = useState({
     institution1: {
-      graduation: "",
-      almaMater: "",
-      attended: ""
-    },
-    institution2: {
-      graduation: "",
-      almaMater: "",
-      attended: ""
-    },
-
-    createInstitution: {
-      graduation: "",
-      almaMater: "",
-      attended: ""
+      graduation: "Bachelor's Degree",
+      almaMater: "University of Illinois at Urbana-Champaign",
+      attended: "08/2015 - 05/2020"
     },
   });
 
@@ -99,7 +89,7 @@ function App() {
   function submitEntry (e) {
     // Push createEmployer edit to workExperience
     e.preventDefault();
-    if (e.target.id == "work-form") {
+    if (e.target.id == "createEmployer") {
       setWorkExperience({
         ...workExperience,
         [uniqid()]: {
@@ -123,6 +113,14 @@ function App() {
             :
             <button onClick={() => setFormToggle({...formToggle, employer: true})}>New +</button>  
             }
+        <Education info={education} />
+        {formToggle.education == true ?
+            <Form section="createEducator" toEdit={edit.createEducator} change={handleFormChange} submit={submitEntry}/>
+            :
+            <button onClick={() => setFormToggle({...formToggle, education: true})}>
+              New Education
+            </button>
+          }
       </section>
     </div>
   );
