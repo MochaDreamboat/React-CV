@@ -26,12 +26,6 @@ function App() {
   const [skills, setSkills] = useState([]);
 
   const [workExperience, setWorkExperience] = useState({
-    employerID: {
-      company: "lorem ipsum bellum",
-      position: "ur mom",
-      datesWorked: "1969-2020", 
-      duties: ['lived fast', 'died young'],
-    },
     employerID2: {
       company: "Legends Bar and Grill",
       position: "Bartender",
@@ -123,7 +117,7 @@ function App() {
         <ContactInfo data={contactInfoData} setData={setContactInfoData} submit={submitChange}/>
       </section>
       <section id="middle">
-        <Employer data={workExperience} id="test"/>
+        <Employer data={workExperience} id="workExperience"/> 
         {formToggle.employer == true ?
             <Form section="createEmployer" toEdit={edit.createEmployer} change={handleFormChange} submit={submitEntry}/>
             :
