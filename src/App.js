@@ -3,9 +3,12 @@ import Header from "./components/Header.js";
 import ContactInfo from "./components/ContactInfo.js";
 import Employer from "./components/Employer.js";
 import Education from "./components/Education.js";
+import Skills from "./components/Skills.js";
 import Form from "./components/Form.js";
+
 import uniqid from "uniqid";
 import './styles/App.css';
+
 
 function App() {
 
@@ -24,7 +27,7 @@ function App() {
   });
 
   // Still needs component file for this...
-  const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState(["Organization", "Leadership", "Conflict Management", "Staff Onboarding", "Full Stack Development"]);
 
   const [workExperience, setWorkExperience] = useState({
     employerID2: {
@@ -118,7 +121,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div id="cv">
       <section id="top">
         <Header data={headerData} setData={setHeaderData} submit={submitChange}/>
         <ContactInfo data={contactInfoData} setData={setContactInfoData} submit={submitChange}/>
@@ -138,6 +141,9 @@ function App() {
               New Education
             </button>
           }
+      </section>
+      <section id="bottom">
+          <Skills skills={skills} />
       </section>
     </div>
   );
