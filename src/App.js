@@ -106,6 +106,13 @@ function App() {
           duties: null
         }
       })
+    } else {
+      setEducation({
+        ...education,
+        [uniqid()]: {
+          ...edit.createEducator
+        }
+      })
     }
     setFormToggle({employer: false, education: false})
   }
