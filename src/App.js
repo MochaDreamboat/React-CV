@@ -53,7 +53,7 @@ function App() {
       company: "",
       position: "",
       datesWorked: "",
-      duties: []
+      duties: null
     },
 
     createEducator: {
@@ -83,7 +83,7 @@ function App() {
       [field]: fieldChange
     }
    })
-   console.log(edit.createEmployer);
+   console.log(edit.createEducator);
   }
 
   function submitEntry (e) {
@@ -97,7 +97,17 @@ function App() {
           duties: edit.createEmployer.duties.split(', ')
         } 
       })
+      setEdit({
+        ...edit,
+        createEmployer: {
+          company: "",
+          position: "",
+          datesWorked: "",
+          duties: null
+        }
+      })
     }
+    setFormToggle({employer: false, education: false})
   }
 
   return (
