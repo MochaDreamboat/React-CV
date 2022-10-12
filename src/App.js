@@ -27,7 +27,7 @@ function App() {
   });
 
   // Still needs component file for this...
-  const [skills, setSkills] = useState(["Organization", "Leadership", "Conflict Management", "Staff Onboarding", "Full Stack Development"]);
+  const [skills, setSkills] = useState([]);
 
   const [workExperience, setWorkExperience] = useState({
     employerID2: {
