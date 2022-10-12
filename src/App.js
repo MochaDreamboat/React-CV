@@ -29,14 +29,7 @@ function App() {
   // Still needs component file for this...
   const [skills, setSkills] = useState([]);
 
-  const [workExperience, setWorkExperience] = useState({
-    employerID2: {
-      company: "Legends Bar and Grill",
-      position: "Bartender",
-      datesWorked: "2017-2020",
-      duties: ["Served drinks at bar", "Managed employees", "ensured security of patrons"],
-    }
-  });
+  const [workExperience, setWorkExperience] = useState({});
 
   const [education, setEducation] = useState({
     institution1: {

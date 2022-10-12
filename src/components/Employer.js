@@ -5,8 +5,9 @@ function Employer (props) {
     const { data } = props;
     return (
         <div>
-            {/* Iterate over data keys
-            and render below for each key */
+            { Object.keys(data).length == 0 ?
+            <p>Tell us where you worked.</p>
+            :
             Object.keys(data).map((employer) => {
                 return (
                 <div key={Math.random()} className="employer">
@@ -20,7 +21,8 @@ function Employer (props) {
                     </ul>
                 </div>
                 )
-            })}
+            })
+            }
         </div>      
     )
 }
