@@ -48,7 +48,8 @@ function App() {
 
   const [formToggle, setFormToggle] = useState({
     employer: false,
-    education: false
+    education: false,
+    skill: false
   });
 
   const [edit, setEdit] = useState({
@@ -63,8 +64,13 @@ function App() {
       graduation: "",
       almaMater: "",
       attended: ""
+    },
+
+    createSkill: {
+      skill: ""
     }
-  })
+  });
+
   // Logic for Header/Contact Info
   function submitChange(obj, field, setFunction) {
     const change = document.getElementById(field).value;
@@ -87,6 +93,21 @@ function App() {
     }
    })
    console.log(edit.createEducator);
+  }
+
+  function handleSkillChange (e) {
+    const skillVal = e.target.value;
+    setEdit({
+      ...edit,
+      createSkill: {skill: skillVal}
+    })
+  }
+
+  function submitSkill (e) {
+    e.preventDefault();
+    setSkills(skills => [...skills, edit.createSkill.skill]);
+    setEdit({...edit, createSkill: {skill: ""}});
+    setFormToggle({...formToggle, skill: false});
   }
 
   function submitEntry (e) {
@@ -143,7 +164,12 @@ function App() {
           }
       </section>
       <section id="bottom">
-          <Skills skills={skills} />
+        <Skills skills={skills} />
+        {formToggle.skill == true ?
+        <Form section="createSkill" toEdit={edit.createSkill} change={handleSkillChange} submit={submitSkill} />
+        :
+          <button onClick={() => setFormToggle({...formToggle, skill: true})}>+ New Skill</button>
+        }
       </section>
     </div>
   );
