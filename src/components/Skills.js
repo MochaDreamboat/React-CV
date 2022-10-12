@@ -21,7 +21,7 @@ function Skills (props) {
                 )
             })
             :
-            <p>Tell me about yourself</p>
+            <p>Show me what you got</p>
             }
         </section>
     )
