@@ -138,7 +138,7 @@ function App() {
     <div id="cv">
       <section id="top">
         <Header data={headerData} setData={setHeaderData} submit={submitChange}/>
-        <ContactInfo data={contactInfoData} setData={setContactInfoData} submit={submitChange}/>
+        <ContactInfo id="contact-info" data={contactInfoData} setData={setContactInfoData} submit={submitChange}/>
       </section>
       <section id="middle">
         <Employer data={workExperience} id="workExperience"/> 
@@ -161,7 +161,7 @@ function App() {
         {formToggle.skill == true ?
         <Form section="createSkill" toEdit={edit.createSkill} change={handleSkillChange} submit={submitSkill} />
         :
-          <button onClick={() => setFormToggle({...formToggle, skill: true})}>+ New Skill</button>
+          <button id="new-skill-button" onClick={() => setFormToggle({...formToggle, skill: true})}>+ New Skill</button>
         }
       </section>
     </div>

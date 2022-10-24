@@ -1,16 +1,20 @@
 body {
     font-family: sans-serif;
     box-sizing: border-box;
-    justify-content: center;
-    background-color: beige;
+    align-items: center;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
 }
 
-li {
-    display: flex;
+#root {
+    background-color: darkblue;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
 }
 
 label {
@@ -24,11 +28,20 @@ button {
     background-color: black;
     color: white;
 }
+
 #skills {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
+}
+
+#cv {
+    margin: 0 auto;
+    align-items: center;
+    width: 80vw;
+    height: 100vh;
+    background-color: beige;
 }
 
 .skill {
@@ -40,12 +53,20 @@ button {
 }
 
 #top, #middle, #bottom {
-    width: 80vw;
-    margin-top: 2em;
+    display: block;
+    margin-bottom: 2em;
+    width: inherit;
+    height: fit-content;
+    align-items: center;
 }
+
 #top {
     display: flex;
     justify-content: space-between;
+}
+
+#contact-info {
+    width: fit-content;
 }
 
 #middle {
@@ -53,10 +74,10 @@ button {
     flex-direction: column;
     flex-grow: 0;
     align-items: center;
-    border: 5px solid red;
 }
 
 #bottom {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
